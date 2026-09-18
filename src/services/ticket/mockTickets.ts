@@ -60,7 +60,10 @@ export const filterTickets = (
 
     // 6. Departure time slot
     if (filter.departureTimeSlots && filter.departureTimeSlots.length > 0) {
-      const depHour = new Date(ticket.departureTime).getHours();
+      const depHour = ticket.departureTime.includes('T')
+        ? parseInt(ticket.departureTime.split('T')[1].split(':')[0], 10)
+        : new Date(ticket.departureTime).getHours();
+
       const matchSlot = filter.departureTimeSlots.some((slot) => {
         if (slot === 'morning') return depHour >= 5 && depHour < 12;
         if (slot === 'afternoon') return depHour >= 12 && depHour < 18;

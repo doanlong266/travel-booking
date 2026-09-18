@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import type { TransportType, ILocationPoint } from '@/types/location';
 import type { ITicketItem, ITicketFilter, SeatClassType } from '@/types/ticket';
 import { mockTickets } from '@/data/mockTickets';
@@ -64,11 +64,24 @@ export const useTicketSearch = (): UseTicketSearchReturn => {
   const [passengerCount, setPassengerCount] = useState<number>(1);
   const [seatClassFilter, setSeatClassFilter] = useState<SeatClassType | 'all'>('all');
 
+  // Dynamic price bounds for current transport mode
+  const priceBounds = useMemo((): [number, number] => {
+    const relevant = mockTickets.filter((t) => t.transportType === transportType);
+    if (relevant.length === 0) return [0, 5000000];
+    const prices = relevant.map((t) => t.price);
+    return [Math.min(...prices), Math.max(...prices)];
+  }, [transportType]);
+
   // Filter criteria
-  const [priceRange, setPriceRange] = useState<[number, number]>([0, 5000000]);
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 3500000]);
   const [selectedCarriers, setSelectedCarriers] = useState<string[]>([]);
   const [selectedTimeSlots, setSelectedTimeSlots] = useState<('morning' | 'afternoon' | 'evening' | 'night')[]>([]);
   const [sortBy, setSortBy] = useState<ITicketFilter['sortBy']>('price_asc');
+
+  // Sync price range when price bounds change on transport switch
+  useEffect(() => {
+    setPriceRange([0, priceBounds[1]]);
+  }, [priceBounds]);
 
   // Change transport type and update corresponding default endpoints
   const setTransportType = useCallback((type: TransportType) => {
@@ -97,44 +110,47 @@ export const useTicketSearch = (): UseTicketSearchReturn => {
     return Array.from(map.entries()).map(([id, name]) => ({ id, name }));
   }, [transportType]);
 
-  // Dynamic price bounds for current transport mode
-  const priceBounds = useMemo((): [number, number] => {
-    const relevant = mockTickets.filter((t) => t.transportType === transportType);
-    if (relevant.length === 0) return [0, 5000000];
-    const prices = relevant.map((t) => t.price);
-    return [Math.min(...prices), Math.max(...prices)];
-  }, [transportType]);
-
   // Reset filters
   const resetFilters = useCallback(() => {
-    setPriceRange([0, 5000000]);
+    setPriceRange([0, priceBounds[1]]);
     setSelectedCarriers([]);
     setSelectedTimeSlots([]);
     setSeatClassFilter('all');
     setSortBy('price_asc');
-  }, []);
+  }, [priceBounds]);
 
   // Filtered and sorted tickets
   const filteredTickets = useMemo(() => {
-    // Basic filter matching criteria
-    const result = filterTickets(mockTickets, {
-      transportType,
-      origin: origin ?? undefined,
-      destination: destination ?? undefined,
+    // 1. Get pool of tickets for current transport mode
+    const modeTickets = mockTickets.filter((t) => t.transportType === transportType);
+
+    // 2. Check if tickets match current route
+    let baseTickets = modeTickets;
+    if (origin && destination) {
+      const routeMatched = modeTickets.filter((t) => {
+        const matchOrigin =
+          t.origin.id === origin.id ||
+          t.origin.city.toLowerCase() === origin.city.toLowerCase();
+        const matchDest =
+          t.destination.id === destination.id ||
+          t.destination.city.toLowerCase() === destination.city.toLowerCase();
+        return matchOrigin && matchDest;
+      });
+
+      if (routeMatched.length > 0) {
+        baseTickets = routeMatched;
+      }
+    }
+
+    // 3. Apply user filter sidebar criteria STRICTLY on baseTickets
+    const result = filterTickets(baseTickets, {
       priceRange,
       carriers: selectedCarriers,
       departureTimeSlots: selectedTimeSlots,
       seatClasses: seatClassFilter === 'all' ? undefined : [seatClassFilter],
     });
 
-    // If no tickets found for specific city pair in mock data, show available routes for the mode
-    // with adjusted origins to guarantee a vibrant rich demo experience
-    let displayList = result;
-    if (displayList.length === 0) {
-      displayList = mockTickets.filter((t) => t.transportType === transportType);
-    }
-
-    return sortTickets(displayList, sortBy);
+    return sortTickets(result, sortBy);
   }, [
     transportType,
     origin,

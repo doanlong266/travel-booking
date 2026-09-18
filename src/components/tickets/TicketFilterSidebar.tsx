@@ -48,8 +48,9 @@ export const TicketFilterSidebar: React.FC<TicketFilterSidebarProps> = ({
     }
   };
 
-  const minVal = Math.min(priceBounds[0], priceRange[0]);
-  const maxVal = Math.max(priceBounds[1], priceRange[1]);
+  const minVal = 0;
+  const maxVal = Math.max(priceBounds[1] || 3500000, priceRange[1]);
+  const step = transportType === 'bus' ? 10000 : 50000;
 
   return (
     <div className="ticket-filter">
@@ -80,7 +81,7 @@ export const TicketFilterSidebar: React.FC<TicketFilterSidebarProps> = ({
           range
           min={minVal}
           max={maxVal}
-          step={50000}
+          step={step}
           value={priceRange}
           onChange={(val) => onPriceRangeChange(val as [number, number])}
           className="ticket-filter__price-slider"
@@ -155,16 +156,20 @@ export const TicketFilterSidebar: React.FC<TicketFilterSidebarProps> = ({
             : 'Nhà xe vận hành'}
         </label>
         <div className="ticket-filter__carriers-list">
-          {availableCarriers.map((carrier) => (
-            <label key={carrier.id} className="ticket-filter__carrier-item">
-              <Checkbox
-                checked={selectedCarriers.includes(carrier.id)}
-                onChange={() => toggleCarrier(carrier.id)}
-              />
-              <CarrierLogo carrier={carrier.id} name={carrier.name} size={24} variant="badge" />
-              <span className="ticket-filter__carrier-name">{carrier.name}</span>
-            </label>
-          ))}
+          {availableCarriers.map((carrier) => {
+            const isChecked = selectedCarriers.includes(carrier.id);
+            return (
+              <div
+                key={carrier.id}
+                className="ticket-filter__carrier-item"
+                onClick={() => toggleCarrier(carrier.id)}
+              >
+                <Checkbox checked={isChecked} style={{ pointerEvents: 'none' }} />
+                <CarrierLogo carrier={carrier.id} name={carrier.name} size={24} variant="badge" />
+                <span className="ticket-filter__carrier-name">{carrier.name}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
