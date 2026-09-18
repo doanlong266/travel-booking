@@ -1,0 +1,162 @@
+@import "../tokens";
+
+/**
+ * App Layout & Hero Banner - Strict BEM
+ * All colors, sizes, line-heights use CSS variables
+ */
+.travel-app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--color-bg-body);
+
+  /* 1. Hero Banner */
+  &__hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--color-neutral-900) 0%, #034b75 50%, var(--color-primary-active) 100%);
+    padding: var(--spacing-3xl) 0 calc(var(--spacing-3xl) + 40px);
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle, rgba(2, 132, 199, 0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      border-radius: var(--radius-full);
+      background: radial-gradient(circle, rgba(13, 148, 136, 0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+  }
+
+  &__hero-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-md);
+    position: relative;
+    z-index: 2;
+  }
+
+  &__hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    color: var(--color-text-inverse);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.5px;
+    backdrop-filter: blur(8px);
+  }
+
+  &__hero-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-white);
+    line-height: var(--line-height-tight);
+    max-width: 800px;
+
+    span {
+      background: linear-gradient(135deg, #38bdf8, #2dd4bf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  &__hero-subtitle {
+    font-size: var(--font-size-base);
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 620px;
+    line-height: var(--line-height-normal);
+  }
+
+  /* 2. Floating Search Widget Container */
+  &__search-container {
+    max-width: 1160px;
+    margin: -40px auto 0;
+    padding: 0 var(--spacing-md);
+    position: relative;
+    z-index: 20;
+    width: 100%;
+  }
+
+  /* 3. Main Content Area */
+  &__main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: var(--spacing-2xl) var(--spacing-lg);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  /* Map Section */
+  &__map-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__section-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__section-icon {
+    color: var(--color-primary);
+  }
+
+  &__section-subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* Results Section */
+  &__results-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__results-grid {
+    display: flex;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+
+    @media (max-width: 1024px) {
+      flex-direction: column;
+    }
+  }
+}

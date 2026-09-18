@@ -1,0 +1,803 @@
+@import "../tokens";
+
+/**
+ * BookingCheckoutModal - Strict BEM
+ * 1. Guest Information Form (No Login Required)
+ * 2. VietQR Payment & 10:00 Countdown Timer
+ * 3. Payment Success & Ticket ID Boarding Pass
+ * All colors, sizes, line-heights use CSS variables
+ */
+.checkout-modal {
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    &--success {
+      color: var(--color-success);
+    }
+  }
+
+  &__header-icon-box {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__header-icon {
+    stroke-width: 2.2;
+  }
+
+  &__success-icon {
+    color: var(--color-success);
+  }
+
+  &__guest-badge-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__guest-tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* =========================================================================
+     STEP 1: GUEST FORM
+     ========================================================================= */
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__trip-recap {
+    background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-bg-subtle));
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  &__recap-route {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__recap-carrier {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-xs);
+  }
+
+  &__recap-points {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__recap-seats {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+
+    strong {
+      color: var(--color-primary);
+      font-size: var(--font-size-sm);
+    }
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__section-title-wrap {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__section-icon {
+    color: var(--color-primary);
+  }
+
+  &__section-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__full-row {
+    grid-column: 1 / -1;
+  }
+
+  &__input-icon {
+    color: var(--color-text-tertiary);
+  }
+
+  &__passengers-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__passenger-card {
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  &__passenger-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-xs);
+  }
+
+  &__passenger-index {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+  }
+
+  &__passenger-seat-tag {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__action-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: var(--spacing-xs);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  &__action-total {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__action-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__action-amount {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-danger);
+    line-height: var(--line-height-tight);
+  }
+
+  &__action-tax-note {
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+  }
+
+  &__action-btns {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__submit-btn {
+    font-weight: var(--font-weight-bold);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    box-shadow: var(--shadow-glow-primary);
+  }
+
+  /* =========================================================================
+     STEP 2: VIETQR PAYMENT & COUNTDOWN TIMER
+     ========================================================================= */
+  &__qr-view {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__countdown-card {
+    background: linear-gradient(135deg, var(--color-primary-subtle), var(--color-bg-subtle));
+    border: 1px solid var(--color-primary-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+
+    &--expired {
+      background: var(--color-danger-light);
+      border-color: var(--color-danger);
+    }
+  }
+
+  &__countdown-main {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__clock-icon {
+    color: var(--color-primary);
+
+    &--expired {
+      color: var(--color-danger);
+    }
+  }
+
+  &__countdown-label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-title);
+  }
+
+  &__countdown-digits {
+    margin-left: auto;
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    font-family: monospace;
+
+    &--expired {
+      color: var(--color-danger);
+    }
+  }
+
+  &__countdown-progress {
+    margin: 0 !important;
+  }
+
+  &__qr-grid {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: var(--spacing-lg);
+    align-items: flex-start;
+
+    @media (max-width: 680px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__qr-card {
+    background: var(--color-white);
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+
+  &__qr-logo-brand {
+    margin-top: var(--spacing-xs);
+  }
+
+  &__qr-bank-pill {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: 2px var(--spacing-sm);
+    border-radius: var(--radius-full);
+  }
+
+  &__scan-instructions {
+    margin-top: var(--spacing-xs);
+    text-align: center;
+
+    p {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-normal);
+    }
+  }
+
+  &__qr-expired-placeholder {
+    background-color: var(--color-danger-light);
+    border: 1px dashed var(--color-danger);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl) var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-xs);
+
+    strong {
+      color: var(--color-danger);
+      font-size: var(--font-size-base);
+    }
+
+    p {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__expired-icon {
+    color: var(--color-danger);
+  }
+
+  &__regen-btn {
+    margin-top: var(--spacing-xs);
+  }
+
+  /* Bank Transfer Details */
+  &__bank-details {
+    background-color: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__bank-heading {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__bank-rows {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  &__bank-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-xs) 0;
+    border-bottom: 1px solid var(--color-border);
+    font-size: var(--font-size-sm);
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &--memo {
+      background-color: var(--color-bg-container);
+      padding: var(--spacing-xs) var(--spacing-sm);
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--color-primary);
+    }
+  }
+
+  &__bank-label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__bank-val {
+    color: var(--color-text-title);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__bank-copy-val {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__highlight-number {
+    font-size: var(--font-size-base);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.5px;
+  }
+
+  &__amount-highlight {
+    font-size: var(--font-size-base);
+    color: var(--color-danger);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__memo-highlight {
+    font-size: var(--font-size-sm);
+    color: var(--color-primary-active);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__copy-btn {
+    color: var(--color-primary);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__polling-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    background-color: var(--color-bg-container);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+  }
+
+  &__polling-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-success);
+    animation: pollingRadar 1.5s infinite;
+  }
+
+  &__polling-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__simulation-box {
+    margin-top: var(--spacing-xxs);
+  }
+
+  &__simulation-btn {
+    width: 100%;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+
+    &:hover {
+      background-color: var(--color-primary-subtle);
+    }
+  }
+
+  /* =========================================================================
+     STEP 3: PAYMENT SUCCESS SCREEN & TICKET ID
+     ========================================================================= */
+  &__success-screen {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+  }
+
+  &__success-banner {
+    background: linear-gradient(135deg, var(--color-success-light), var(--color-bg-subtle));
+    border: 1px solid var(--color-success);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__success-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-success);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+  }
+
+  &__success-icon-lg {
+    stroke-width: 2.5;
+  }
+
+  &__success-headline {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__success-subline {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    max-width: 500px;
+  }
+
+  /* Prominent Ticket ID Card */
+  &__ticket-id-card {
+    margin-top: var(--spacing-sm);
+    background: var(--color-white);
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &__ticket-id-info {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  &__ticket-id-label {
+    font-size: 10px;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+  }
+
+  &__ticket-id-val {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    font-family: monospace;
+  }
+
+  &__copy-ticket-btn {
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-sm);
+  }
+
+  /* Ticket Voucher Card */
+  &__voucher-card {
+    background: var(--color-bg-container);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+  }
+
+  &__voucher-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-sm);
+  }
+
+  &__voucher-carrier {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__voucher-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-base);
+  }
+
+  &__voucher-carrier-name {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__voucher-vehicle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__confirmed-tag {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    padding: 4px var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  &__voucher-route {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--spacing-md);
+    text-align: center;
+    padding: var(--spacing-sm) 0;
+  }
+
+  &__voucher-station {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__voucher-city {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__voucher-code-lg {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    line-height: var(--line-height-tight);
+  }
+
+  &__voucher-terminal {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-primary);
+  }
+
+  &__voucher-time {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-top: 4px;
+  }
+
+  &__voucher-mid-route {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &__voucher-km-badge {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: 2px var(--spacing-sm);
+    border-radius: var(--radius-full);
+  }
+
+  &__voucher-line-decor {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+  }
+
+  &__line-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+  }
+
+  &__line-bar {
+    width: 60px;
+    height: 2px;
+    background-color: var(--color-primary);
+  }
+
+  &__line-arrow {
+    color: var(--color-primary);
+  }
+
+  &__voucher-seat-type {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  /* Key Meta Grid */
+  &__voucher-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    background-color: var(--color-bg-subtle);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+
+  &__voucher-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__meta-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__meta-val {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-title);
+
+    &--price {
+      color: var(--color-danger);
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  /* Success Actions */
+  &__success-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--spacing-md);
+    padding-top: var(--spacing-xs);
+  }
+
+  &__print-action-btn {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__home-action-btn {
+    font-weight: var(--font-weight-bold);
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+@keyframes pollingRadar {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0.7;
+  }
+}

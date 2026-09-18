@@ -1,0 +1,39 @@
+// 1. Google Font "Be Vietnam Pro" via @fontsource
+@import "@fontsource/be-vietnam-pro/400.css";
+@import "@fontsource/be-vietnam-pro/500.css";
+@import "@fontsource/be-vietnam-pro/600.css";
+@import "@fontsource/be-vietnam-pro/700.css";
+
+// 2. Leaflet Core Styles
+@import "leaflet/dist/leaflet.css";
+
+// 3. Central Tokens & CSS Variables (Single Source of Truth)
+@import "./tokens";
+
+// 4. CSS Reset
+@import "./reset";
+
+// 5. Strict BEM Component Stylesheets
+@import "./components/carrier-logo";
+@import "./components/app-header";
+@import "./components/search-widget";
+@import "./components/route-map";
+@import "./components/ticket-card";
+@import "./components/ticket-list";
+@import "./components/ticket-filter";
+@import "./components/ticket-detail";
+@import "./components/seat-modal";
+@import "./components/checkout-modal";
+@import "./components/app-footer";
+@import "./components/policy-modal";
+@import "./components/auth-modal";
+@import "./components/user-header-menu";
+@import "./components/user-dashboard";
+@import "./components/tab-rewards";
+@import "./components/voucher-card";
+@import "./components/rewards-container";
+@import "./components/smooth-tabs";
+@import "./components/fill-button";
+@import "./components/app-layout";
+
+

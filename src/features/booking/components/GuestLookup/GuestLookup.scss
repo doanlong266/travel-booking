@@ -1,0 +1,914 @@
+@import "../../../../styles/tokens";
+
+// ==========================================
+// GUEST LOOKUP MODAL & TABS
+// ==========================================
+.guest-lookup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+
+  &__tabs {
+    display: flex;
+    background-color: var(--color-bg-subtle, #f1f5f9);
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-lg);
+    gap: var(--spacing-xs);
+  }
+
+  &__tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      background-color: var(--color-surface, #ffffff);
+      color: var(--color-primary);
+      font-weight: var(--font-weight-semibold);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    &-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 10px;
+      background-color: var(--color-primary-light, #e0f2fe);
+      color: var(--color-primary);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  &__label {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-primary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__input-icon {
+    position: absolute;
+    left: 14px;
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-family: inherit;
+    color: var(--color-text-primary);
+    background-color: var(--color-surface, #ffffff);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+
+    &--uppercase {
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: var(--font-weight-medium);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary-light, rgba(14, 165, 233, 0.15));
+    }
+
+    &::placeholder {
+      color: var(--color-text-muted);
+      text-transform: none;
+      letter-spacing: normal;
+      font-weight: normal;
+    }
+  }
+
+  &__quick-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-bg-subtle, #f8fafc);
+    border-radius: var(--radius-md);
+    border: 1px dashed var(--color-border);
+  }
+
+  &__quick-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  &__quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__chip {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: var(--font-size-xs);
+    background-color: #ffffff;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-primary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      background-color: var(--color-primary-light, #f0f9ff);
+    }
+  }
+
+  &__error-alert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+  }
+
+  &__submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #0284c7 100%);
+    color: #ffffff;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+
+    &:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(14, 165, 233, 0.4);
+    }
+
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+  }
+
+  // Recent bookings tab
+  &__recent-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    max-height: 420px;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  &__recent-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: var(--spacing-md);
+    background-color: var(--color-surface, #ffffff);
+    border: 1.5px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      border-color: var(--color-primary);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transform: translateY(-1px);
+    }
+  }
+
+  &__recent-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__recent-carrier {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+  }
+
+  &__recent-route {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+  }
+
+  &__recent-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    padding-top: 8px;
+    border-top: 1px dashed var(--color-border);
+  }
+
+  &__recent-price {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    font-size: var(--font-size-sm);
+  }
+
+  &__empty-recent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-2xl) var(--spacing-md);
+    text-align: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-muted);
+  }
+}
+
+// Status Badges
+.ticket-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  &--confirmed {
+    background-color: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+  }
+
+  &--pending_payment {
+    background-color: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fde68a;
+  }
+
+  &--expired {
+    background-color: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+
+  &--cancelled {
+    background-color: #f1f5f9;
+    color: #64748b;
+    border: 1px solid #cbd5e1;
+  }
+}
+
+// ==========================================
+// ELECTRONIC TICKET VIEW / BOARDING PASS
+// ==========================================
+.e-ticket {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+
+  &__actions-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+  }
+
+  &__back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface, #ffffff);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-primary);
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__action-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface, #ffffff);
+    color: var(--color-text-primary);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background-color: var(--color-bg-subtle, #f8fafc);
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    &--primary {
+      background-color: var(--color-primary);
+      color: #ffffff;
+      border-color: var(--color-primary);
+
+      &:hover {
+        background-color: #0284c7;
+        color: #ffffff;
+      }
+    }
+  }
+
+  // Boarding Pass Physical Card Style
+  &__card {
+    position: relative;
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border: 1.5px solid var(--color-border);
+    overflow: hidden;
+  }
+
+  &__header {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #ffffff;
+    padding: var(--spacing-lg) var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+  }
+
+  &__carrier-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__carrier-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: #ffffff;
+    margin: 0;
+  }
+
+  &__carrier-vehicle {
+    font-size: var(--font-size-xs);
+    color: #94a3b8;
+  }
+
+  &__pnr-badge-box {
+    text-align: right;
+  }
+
+  &__pnr-label {
+    font-size: var(--font-size-xs);
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.5px;
+  }
+
+  &__pnr-code {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    color: #38bdf8;
+    font-family: monospace;
+    letter-spacing: 1.5px;
+  }
+
+  // Route Details Banner
+  &__route-banner {
+    padding: var(--spacing-xl);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: var(--spacing-lg);
+    background-color: #ffffff;
+    border-bottom: 2px dashed #e2e8f0;
+    position: relative;
+
+    // Ticket Notch left & right
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -12px;
+      width: 24px;
+      height: 24px;
+      background-color: var(--color-bg-subtle, #f8fafc);
+      border-radius: 50%;
+      border: 1.5px solid var(--color-border);
+    }
+    &::before { left: -12px; }
+    &::after { right: -12px; }
+  }
+
+  &__route-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    &--dest {
+      text-align: right;
+    }
+  }
+
+  &__city-code {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    color: var(--color-text-primary);
+  }
+
+  &__city-name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+  }
+
+  &__station-name {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+  }
+
+  &__time {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    margin-top: 4px;
+  }
+
+  &__route-mid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 0 var(--spacing-md);
+  }
+
+  &__duration {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-muted);
+  }
+
+  &__route-line {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-primary);
+    width: 100%;
+
+    &-bar {
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, var(--color-primary));
+      flex: 1;
+      border-radius: 1px;
+    }
+  }
+
+  // Middle Content Grid
+  &__details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+  }
+
+  &__passenger-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__section-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    text-transform: uppercase;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  &__passenger-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-sm);
+
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      background-color: #f8fafc;
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid #f1f5f9;
+      color: var(--color-text-primary);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+  }
+
+  &__seat-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    background-color: var(--color-primary-light, #e0f2fe);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    border-radius: var(--radius-sm);
+  }
+
+  // QR Boarding Pass Section
+  &__qr-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background-color: #f8fafc;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  &__qr-box {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: var(--radius-md);
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  }
+
+  &__qr-instruction {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+
+  // Status Specific Actions (e.g. Expired / Pending)
+  &__status-callout {
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+
+    &--pending {
+      background-color: #fffbeb;
+      border: 1px solid #fde68a;
+      color: #92400e;
+    }
+
+    &--expired {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+    }
+  }
+
+  // Upsell Member Conversion Banner
+  &__upsell-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+    border: 1.5px solid #86efac;
+    border-radius: var(--radius-xl);
+    gap: var(--spacing-md);
+  }
+
+  &__upsell-info {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  &__upsell-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-color: #16a34a;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__upsell-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: #14532d;
+    margin-bottom: 2px;
+  }
+
+  &__upsell-desc {
+    font-size: var(--font-size-xs);
+    color: #166534;
+  }
+
+  &__upsell-btn {
+    padding: 10px 18px;
+    border-radius: var(--radius-md);
+    background-color: #16a34a;
+    color: #ffffff;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      background-color: #15803d;
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.3);
+    }
+  }
+}
+
+// ==========================================
+// FLOATING RECOVERY WIDGET
+// ==========================================
+.guest-widget {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  right: auto;
+  z-index: 1000;
+  max-width: 420px;
+  width: auto;
+  animation: guestWidgetSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  @media (max-width: 640px) {
+    bottom: 84px;
+    right: 16px;
+    left: 16px;
+    max-width: none;
+    width: auto;
+  }
+
+  &__card {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 14px 18px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+    border: 1.5px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+
+    &--pending {
+      border-color: #f59e0b;
+      background: linear-gradient(135deg, #ffffff 0%, #fffdf5 100%);
+    }
+
+    &--recent {
+      border-color: var(--color-primary);
+    }
+  }
+
+  &__icon-box {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    &--pending {
+      background-color: #fef3c7;
+      color: #d97706;
+    }
+
+    &--recent {
+      background-color: var(--color-primary-light, #e0f2fe);
+      color: var(--color-primary);
+    }
+  }
+
+  &__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  &__title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__desc {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__action-btn {
+    padding: 6px 12px;
+    border-radius: var(--radius-md);
+    background-color: var(--color-primary);
+    color: #ffffff;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color var(--transition-fast);
+
+    &:hover {
+      background-color: #0284c7;
+    }
+
+    &--pending {
+      background-color: #d97706;
+      &:hover {
+        background-color: #b45309;
+      }
+    }
+  }
+
+  &__close-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #475569;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background: #1e293b;
+    }
+  }
+}
+
+@keyframes guestWidgetSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// ==========================================
+// MEDIA PRINT OPTIMIZATION
+// ==========================================
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .e-ticket__card,
+  .e-ticket__card * {
+    visibility: visible;
+  }
+
+  .e-ticket__card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+  }
+
+  .e-ticket__actions-top,
+  .e-ticket__upsell-card,
+  .guest-lookup__tabs,
+  .guest-widget,
+  .modal-overlay,
+  .app-header {
+    display: none !important;
+  }
+}
+
+// Responsive
+@media (max-width: 640px) {
+  .e-ticket__details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .e-ticket__route-banner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: var(--spacing-md);
+
+    .e-ticket__route-col--dest {
+      text-align: center;
+    }
+  }
+
+  .e-ticket__upsell-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

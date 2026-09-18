@@ -1,0 +1,377 @@
+@import "../tokens";
+
+/**
+ * SeatSelectionModal - Strict BEM
+ * All colors, sizes, line-heights use CSS variables
+ */
+.seat-modal {
+  &__title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  &__title-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__subtitle {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__count-tag {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Legend */
+  &__legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-sm);
+    background-color: var(--color-bg-subtle);
+    border-radius: var(--radius-md);
+    margin: var(--spacing-sm) 0;
+  }
+
+  &__legend-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-xs);
+    border: 1px solid var(--color-border);
+
+    &--available {
+      background-color: var(--color-bg-container);
+    }
+
+    &--selected {
+      background-color: var(--color-primary);
+      border-color: var(--color-primary-active);
+    }
+
+    &--occupied {
+      background-color: var(--color-neutral-300);
+      border-color: var(--color-neutral-400);
+    }
+  }
+
+  /* Deck Switcher for Bus */
+  &__deck-switcher {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+  }
+
+  &__deck-btn {
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-subtle);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-fast);
+
+    &--active {
+      background-color: var(--color-accent);
+      color: var(--color-text-inverse);
+      border-color: var(--color-accent);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  /* Cabin Container */
+  &__cabin-container {
+    max-height: 380px;
+    overflow-y: auto;
+    padding: var(--spacing-sm);
+    background-color: var(--color-bg-subtle);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+  }
+
+  /* Flight Layout */
+  &__flight-cabin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__cockpit-nose {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    background-color: var(--color-primary-light);
+    padding: var(--spacing-xxs) var(--spacing-md);
+    border-radius: var(--radius-full);
+    letter-spacing: 0.5px;
+  }
+
+  &__flight-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+    width: 100%;
+    max-width: 440px;
+  }
+
+  &__flight-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  &__seat-group {
+    display: flex;
+    gap: var(--spacing-xs);
+  }
+
+  &__aisle-num {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+    width: 24px;
+    text-align: center;
+  }
+
+  &__seat-button {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--radius-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    border: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+
+    &--available {
+      background-color: var(--color-bg-container);
+      color: var(--color-text-primary);
+
+      &:hover {
+        border-color: var(--color-primary);
+        background-color: var(--color-primary-light);
+        color: var(--color-primary);
+        transform: scale(1.08);
+      }
+    }
+
+    &--selected {
+      background-color: var(--color-primary);
+      color: var(--color-text-inverse);
+      border-color: var(--color-primary-hover);
+      box-shadow: var(--shadow-sm);
+    }
+
+    &--occupied {
+      background-color: var(--color-neutral-200);
+      color: var(--color-neutral-400);
+      cursor: not-allowed;
+    }
+  }
+
+  /* Train Layout */
+  &__train-cabin {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__cabin-indicator {
+    text-align: center;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-secondary);
+  }
+
+  &__train-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__train-compartment {
+    background-color: var(--color-bg-container);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  &__compartment-title {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-secondary);
+  }
+
+  &__train-berths {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xs);
+  }
+
+  &__berth-button {
+    height: 48px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+
+    &--available {
+      background-color: var(--color-bg-container);
+      color: var(--color-text-primary);
+
+      &:hover {
+        border-color: var(--color-secondary);
+        background-color: var(--color-secondary-light);
+        color: var(--color-secondary);
+      }
+    }
+
+    &--selected {
+      background-color: var(--color-secondary);
+      color: var(--color-text-inverse);
+      border-color: var(--color-secondary-hover);
+    }
+
+    &--occupied {
+      background-color: var(--color-neutral-200);
+      color: var(--color-neutral-400);
+      cursor: not-allowed;
+    }
+  }
+
+  /* Bus Layout */
+  &__bus-cabin {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__bus-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-sm);
+
+    @media (max-width: 640px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__bus-seat {
+    height: 60px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    transition: all var(--transition-fast);
+
+    &--available {
+      background-color: var(--color-bg-container);
+      color: var(--color-text-primary);
+
+      &:hover {
+        border-color: var(--color-accent);
+        background-color: var(--color-accent-light);
+        color: var(--color-accent);
+      }
+    }
+
+    &--selected {
+      background-color: var(--color-accent);
+      color: var(--color-text-inverse);
+      border-color: var(--color-accent-hover);
+    }
+
+    &--occupied {
+      background-color: var(--color-neutral-200);
+      color: var(--color-neutral-400);
+      cursor: not-allowed;
+    }
+  }
+
+  &__bus-seat-num {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &__bus-seat-status {
+    font-size: 10px;
+  }
+
+  /* Modal Footer */
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  &__footer-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__summary-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__summary-seats {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  &__footer-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+
+  &__proceed-btn {
+    font-weight: var(--font-weight-bold);
+  }
+}

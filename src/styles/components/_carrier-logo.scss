@@ -1,0 +1,153 @@
+@import "../tokens";
+
+/**
+ * CarrierLogo Component - Strict BEM & SOLID Styling
+ * Ensures sharp logo rendering, responsive scaling, and branded accents
+ */
+.carrier-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  vertical-align: middle;
+  flex-shrink: 0;
+  user-select: none;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+
+  &--clickable {
+    cursor: pointer;
+  }
+
+  /* Image Container Box */
+  &__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-container);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.06);
+    padding: 2px;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12);
+    }
+  }
+
+  /* Logo Image */
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: calc(var(--radius-sm) - 1px);
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  /* Brand Text Name */
+  &__name {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-title);
+    white-space: nowrap;
+  }
+
+  /* --------------------------------------------------------------------------
+     VARIANTS: badge, avatar, icon, full
+     -------------------------------------------------------------------------- */
+  &--badge {
+    .carrier-logo__box {
+      border-radius: var(--radius-sm);
+    }
+  }
+
+  &--avatar {
+    .carrier-logo__box {
+      border-radius: var(--radius-full);
+      padding: 3px;
+    }
+    .carrier-logo__img {
+      border-radius: var(--radius-full);
+    }
+  }
+
+  &--icon {
+    .carrier-logo__box {
+      border: none !important;
+      box-shadow: none !important;
+      background-color: transparent !important;
+      padding: 0 !important;
+    }
+  }
+
+  &--full {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  /* --------------------------------------------------------------------------
+     FALLBACK BADGE (When image fails or carrier unknown)
+     -------------------------------------------------------------------------- */
+  &--fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--color-border);
+    background-color: var(--color-bg-subtle);
+    padding: 2px 6px;
+  }
+
+  &__fallback-text {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* --------------------------------------------------------------------------
+     BRAND-SPECIFIC BORDER & ACCENT REFINEMENTS
+     -------------------------------------------------------------------------- */
+  &--vna .carrier-logo__box {
+    border-color: rgba(3, 95, 127, 0.35);
+  }
+
+  &--vj .carrier-logo__box {
+    border-color: rgba(235, 28, 36, 0.3);
+  }
+
+  &--bamboo .carrier-logo__box {
+    border-color: rgba(7, 56, 113, 0.3);
+  }
+
+  &--vietravel .carrier-logo__box {
+    border-color: rgba(0, 56, 122, 0.3);
+  }
+
+  &--dsvn .carrier-logo__box {
+    border-color: rgba(0, 84, 166, 0.3);
+  }
+
+  &--futa .carrier-logo__box {
+    border-color: rgba(239, 82, 34, 0.35);
+  }
+
+  &--mailinh .carrier-logo__box {
+    border-color: rgba(0, 136, 55, 0.3);
+  }
+
+  &--kumhosamco .carrier-logo__box {
+    border-color: rgba(237, 28, 36, 0.3);
+  }
+
+  &--thanhbuoi .carrier-logo__box {
+    border-color: rgba(22, 101, 52, 0.3);
+  }
+
+  &--hoanglong .carrier-logo__box {
+    border-color: rgba(220, 38, 38, 0.3);
+  }
+}

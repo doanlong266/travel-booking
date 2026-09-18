@@ -1,0 +1,201 @@
+@import "../tokens";
+
+// ==========================================================================
+// SMOOTH TABS (FLUID & SILKY SMOOTH MOTION COMPONENT)
+// Strict BEM Architecture with CSS Variables (Apple / Stripe style)
+// ==========================================================================
+
+.smooth-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-family: var(--font-family-base);
+
+  // --------------------------------------------------------------------------
+  // 1. Navigation List
+  // --------------------------------------------------------------------------
+  &__nav-list {
+    display: flex;
+    align-items: center;
+    position: relative;
+    user-select: none;
+  }
+
+  // --------------------------------------------------------------------------
+  // 2. Tab Items
+  // --------------------------------------------------------------------------
+  &__item {
+    position: relative;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition: color 0.2s ease, opacity 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+      border-radius: var(--radius-sm);
+    }
+
+    &--disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+  }
+
+  &__item-inner {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  &__item-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  &__item-label {
+    white-space: nowrap;
+  }
+
+  &__item-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    border-radius: 9999px;
+    padding: 1px 7px;
+    line-height: 1.2;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  // --------------------------------------------------------------------------
+  // 3. Variant: Pill / Segment (Apple iOS / macOS style)
+  // --------------------------------------------------------------------------
+  &--pill {
+    .smooth-tabs__nav-list {
+      background-color: var(--color-neutral-100);
+      padding: 4px;
+      border-radius: var(--radius-md);
+      gap: 4px;
+      width: fit-content;
+    }
+
+    .smooth-tabs__item {
+      padding: 7px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-neutral-600);
+
+      &:hover:not(.smooth-tabs__item--disabled) {
+        color: var(--color-neutral-900);
+      }
+
+      &--active {
+        color: var(--color-white);
+      }
+    }
+
+    .smooth-tabs__indicator {
+      position: absolute;
+      inset: 0;
+      background-color: var(--color-primary);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 2px 6px rgba(37, 99, 235, 0.28);
+      z-index: 1;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .smooth-tabs__item--active .smooth-tabs__item-badge {
+      background-color: rgba(255, 255, 255, 0.25);
+      color: var(--color-white);
+    }
+
+    .smooth-tabs__item:not(.smooth-tabs__item--active) .smooth-tabs__item-badge {
+      background-color: var(--color-neutral-200);
+      color: var(--color-neutral-700);
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 4. Variant: Underline (Stripe Dashboard style)
+  // --------------------------------------------------------------------------
+  &--underline {
+    .smooth-tabs__nav-list {
+      border-bottom: 2px solid var(--color-neutral-200);
+      gap: 24px;
+      width: 100%;
+    }
+
+    .smooth-tabs__item {
+      padding: 10px 4px 12px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-neutral-500);
+
+      &:hover:not(.smooth-tabs__item--disabled) {
+        color: var(--color-neutral-900);
+      }
+
+      &--active {
+        color: var(--color-primary);
+      }
+    }
+
+    .smooth-tabs__indicator {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background-color: var(--color-primary);
+      border-radius: 2px;
+      z-index: 1;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .smooth-tabs__item--active .smooth-tabs__item-badge {
+      background-color: var(--color-primary-subtle);
+      color: var(--color-primary);
+    }
+
+    .smooth-tabs__item:not(.smooth-tabs__item--active) .smooth-tabs__item-badge {
+      background-color: var(--color-neutral-100);
+      color: var(--color-neutral-500);
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // 5. Content Pane & Smooth Height Wrapper
+  // --------------------------------------------------------------------------
+  &__pane-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__pane {
+    position: relative;
+    width: 100%;
+    will-change: transform, opacity;
+  }
+
+  &__nav-extra {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+}

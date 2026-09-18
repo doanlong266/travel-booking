@@ -1,0 +1,444 @@
+@import "../tokens";
+
+/**
+ * Route Map, Custom Vector Markers & RouteStatsBadge - Strict BEM
+ * All colors and sizes use CSS variables
+ */
+.route-map {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  background-color: var(--color-bg-subtle);
+
+  &__container {
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    .leaflet-tile {
+      filter: saturate(0.88) contrast(1.03);
+    }
+  }
+
+  /* Polyline Transport Dash Animations */
+  &__polyline--flight {
+    stroke-dasharray: 8, 8;
+    animation: flightDash 25s linear infinite;
+  }
+
+  &__polyline--train {
+    stroke-dasharray: 12, 6;
+  }
+
+  /* Leaflet Popup Styling */
+  &__popup {
+    .leaflet-popup-content-wrapper {
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      padding: var(--spacing-xs);
+    }
+
+    .leaflet-popup-content {
+      margin: var(--spacing-xs);
+      line-height: var(--line-height-normal);
+    }
+  }
+
+  &__popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxs);
+  }
+
+  &__popup-tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+
+    &--dest {
+      color: var(--color-secondary);
+    }
+  }
+
+  &__popup-title {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-title);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__popup-address {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+}
+
+@keyframes flightDash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+/**
+ * Custom Vector Marker (Leaflet DivIcon)
+ */
+.vector-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    background-color: var(--pulse-color);
+    opacity: 0.6;
+    animation: markerPulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  &__pin {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 2;
+    transition: transform var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.15);
+    }
+  }
+
+  &__label {
+    position: absolute;
+    top: 40px;
+    background-color: var(--color-bg-container);
+    border: 1px solid;
+    border-radius: var(--radius-xs);
+    padding: 2px 6px;
+    box-shadow: var(--shadow-sm);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  &__role {
+    font-size: 10px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  &__code {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+}
+
+@keyframes markerPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.6);
+    opacity: 0;
+  }
+}
+
+/**
+ * RouteStatsBadge BEM
+ */
+.route-stats-badge {
+  position: absolute;
+  bottom: var(--spacing-md);
+  left: var(--spacing-md);
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  min-width: 290px;
+  max-width: calc(100% - 32px);
+  pointer-events: auto;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+  }
+
+  &__mode-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__mode-icon {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary);
+  }
+
+  &__mode-title {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__speed-tag {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+    background-color: var(--color-bg-subtle);
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-full);
+  }
+
+  &__tag-icon {
+    color: var(--color-warning);
+  }
+
+  &__metrics {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-bg-subtle);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+
+  &__item-icon-wrapper {
+    width: 28px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--distance {
+      background-color: var(--color-primary-light);
+      color: var(--color-primary);
+    }
+
+    &--duration {
+      background-color: var(--color-secondary-light);
+      color: var(--color-secondary);
+    }
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__item-value {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+
+    small {
+      font-weight: var(--font-weight-normal);
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__divider {
+    width: 1px;
+    height: 24px;
+    background-color: var(--color-border);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__footer-icon {
+    color: var(--color-primary);
+  }
+
+  &__footer-text {
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+/**
+ * ----------------------------------------------------------------------------
+ * VIETNAMESE SOVEREIGNTY (HOÀNG SA & TRƯỜNG SA) - STRICT BEM
+ * ----------------------------------------------------------------------------
+ */
+.sovereignty-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__pulse {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background-color: rgba(218, 37, 29, 0.4);
+    animation: sovereigntyPulse 2.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+    pointer-events: none;
+  }
+
+  &__badge {
+    position: relative;
+    z-index: 2;
+    border-radius: var(--radius-full);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #da251d;
+    border: 1.5px solid #ffffff;
+    transition: transform var(--transition-fast);
+
+    &:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  &--large &__pulse {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+@keyframes sovereigntyPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.6);
+    opacity: 0.8;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+/**
+ * Leaflet Sovereignty Permanent Tooltip
+ */
+.sovereignty-badge {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1.5px solid #da251d !important;
+  border-radius: var(--radius-sm) !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15) !important;
+  padding: 4px 8px !important;
+  white-space: nowrap !important;
+  pointer-events: auto !important;
+
+  &::before {
+    border-bottom-color: #da251d !important;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__flag-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  &__texts {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+  }
+
+  &__title {
+    font-size: 12px;
+    font-weight: var(--font-weight-bold);
+    color: #b91c1c;
+    letter-spacing: 0.2px;
+  }
+
+  &__admin {
+    font-size: 10px;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-secondary);
+  }
+
+  /* Compact zoom level (< 6) */
+  &--compact {
+    padding: 2px 6px !important;
+
+    .sovereignty-badge__title {
+      font-size: 11px;
+    }
+  }
+
+  /* Expanded zoom level (>= 7) */
+  &--expanded {
+    padding: 5px 10px !important;
+
+    .sovereignty-badge__title {
+      font-size: 13px;
+    }
+
+    .sovereignty-badge__admin {
+      font-size: 11px;
+    }
+  }
+}
+

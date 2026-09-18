@@ -1,0 +1,246 @@
+/**
+ * ==========================================================================
+ * DESIGN TOKENS - SINGLE SOURCE OF TRUTH
+ * Travel Booking Multi-Modal Platform
+ * All colors, typography, spacings, and shadows must be defined here.
+ * NEVER hardcode raw hex colors or px font sizes in component stylesheets.
+ * ==========================================================================
+ */
+
+// --------------------------------------------------------------------------
+// SCSS Variables: Brand & Palette
+// --------------------------------------------------------------------------
+$color-brand-primary: #0284c7;        // Sky Blue 600 - Dynamic travel primary
+$color-brand-primary-hover: #0369a1;  // Sky Blue 700
+$color-brand-primary-active: #0c4a6e; // Sky Blue 900
+$color-brand-primary-light: #e0f2fe;  // Sky Blue 100 - Subtle badge background
+$color-brand-primary-subtle: #f0f9ff; // Sky Blue 50
+
+$color-brand-secondary: #0d9488;      // Teal 600 - Train & Eco transport
+$color-brand-secondary-hover: #0f766e;
+$color-brand-secondary-light: #ccfbf1;
+
+$color-brand-accent: #f97316;         // Orange 500 - Bus & High-visibility callouts
+$color-brand-accent-hover: #ea580c;
+$color-brand-accent-light: #ffedd5;
+
+// Functional Colors
+$color-success: #10b981;              // Emerald 500
+$color-success-hover: #059669;
+$color-success-light: #d1fae5;
+
+$color-warning: #f59e0b;              // Amber 500
+$color-warning-hover: #d97706;
+$color-warning-light: #fef3c7;
+
+$color-danger: #ef4444;               // Red 500
+$color-danger-hover: #dc2626;
+$color-danger-light: #fee2e2;
+
+$color-info: #3b82f6;                 // Blue 500
+$color-info-hover: #2563eb;
+$color-info-light: #dbeafe;
+
+// Neutrals Scale (50 - 900)
+$color-neutral-50: #f8fafc;
+$color-neutral-100: #f1f5f9;
+$color-neutral-200: #e2e8f0;
+$color-neutral-300: #cbd5e1;
+$color-neutral-400: #94a3b8;
+$color-neutral-500: #64748b;
+$color-neutral-600: #475569;
+$color-neutral-700: #334155;
+$color-neutral-800: #1e293b;
+$color-neutral-900: #0f172a;
+$color-white: #ffffff;
+$color-black: #000000;
+
+// Semantic Surface & Text mappings
+$color-text-title: $color-neutral-900;
+$color-text-primary: $color-neutral-800;
+$color-text-secondary: $color-neutral-500;
+$color-text-tertiary: $color-neutral-400;
+$color-text-inverse: $color-white;
+
+$color-bg-body: #f8fafc;
+$color-bg-container: #ffffff;
+$color-bg-surface: #ffffff;
+$color-bg-subtle: #f1f5f9;
+$color-bg-elevated: #ffffff;
+
+$color-border-subtle: #f1f5f9;
+$color-border-default: #e2e8f0;
+$color-border-hover: #cbd5e1;
+$color-border-active: $color-brand-primary;
+
+// --------------------------------------------------------------------------
+// SCSS Variables: Typography Scale (Strict User Specification)
+// --------------------------------------------------------------------------
+$font-family-base: "Be Vietnam Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+
+$font-size-xs: 12px;   // Caption, tag nhỏ
+$font-size-sm: 14px;   // Nhãn phụ, body nhỏ
+$font-size-base: 16px; // Body mặc định
+$font-size-md: 18px;   // Tiêu đề phụ, giá vé nổi bật
+$font-size-lg: 20px;   // Tiêu đề card, modal header
+$font-size-xl: 24px;   // Tiêu đề trang, widget header
+$font-size-2xl: 32px;  // Banner title
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.25;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.75;
+
+// --------------------------------------------------------------------------
+// SCSS Variables: Spacings & Border Radii
+// --------------------------------------------------------------------------
+$spacing-xxs: 4px;
+$spacing-xs: 8px;
+$spacing-sm: 12px;
+$spacing-md: 16px;
+$spacing-lg: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+$spacing-3xl: 64px;
+
+$radius-xs: 4px;
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+$radius-xl: 24px;
+$radius-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
+$shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
+$shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.09), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+$shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+$shadow-glow-primary: 0 0 20px rgba(2, 132, 199, 0.25);
+
+// Transitions
+$transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// --------------------------------------------------------------------------
+// CSS CUSTOM PROPERTIES (:root)
+// Exported to DOM for standard BEM usage var(--token)
+// --------------------------------------------------------------------------
+:root {
+  // Brand Colors
+  --color-primary: #{$color-brand-primary};
+  --color-primary-hover: #{$color-brand-primary-hover};
+  --color-primary-active: #{$color-brand-primary-active};
+  --color-primary-light: #{$color-brand-primary-light};
+  --color-primary-subtle: #{$color-brand-primary-subtle};
+
+  --color-secondary: #{$color-brand-secondary};
+  --color-secondary-hover: #{$color-brand-secondary-hover};
+  --color-secondary-light: #{$color-brand-secondary-light};
+
+  --color-accent: #{$color-brand-accent};
+  --color-accent-hover: #{$color-brand-accent-hover};
+  --color-accent-light: #{$color-brand-accent-light};
+
+  // Functional Colors
+  --color-success: #{$color-success};
+  --color-success-hover: #{$color-success-hover};
+  --color-success-light: #{$color-success-light};
+
+  --color-warning: #{$color-warning};
+  --color-warning-hover: #{$color-warning-hover};
+  --color-warning-light: #{$color-warning-light};
+
+  --color-danger: #{$color-danger};
+  --color-danger-hover: #{$color-danger-hover};
+  --color-danger-light: #{$color-danger-light};
+
+  --color-info: #{$color-info};
+  --color-info-hover: #{$color-info-hover};
+  --color-info-light: #{$color-info-light};
+
+  // Neutrals Scale
+  --color-neutral-50: #{$color-neutral-50};
+  --color-neutral-100: #{$color-neutral-100};
+  --color-neutral-200: #{$color-neutral-200};
+  --color-neutral-300: #{$color-neutral-300};
+  --color-neutral-400: #{$color-neutral-400};
+  --color-neutral-500: #{$color-neutral-500};
+  --color-neutral-600: #{$color-neutral-600};
+  --color-neutral-700: #{$color-neutral-700};
+  --color-neutral-800: #{$color-neutral-800};
+  --color-neutral-900: #{$color-neutral-900};
+  --color-white: #{$color-white};
+  --color-black: #{$color-black};
+
+  // Semantic Text & Surfaces
+  --color-text-title: #{$color-text-title};
+  --color-text-primary: #{$color-text-primary};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-text-tertiary: #{$color-text-tertiary};
+  --color-text-inverse: #{$color-text-inverse};
+
+  --color-bg-body: #{$color-bg-body};
+  --color-bg-container: #{$color-bg-container};
+  --color-bg-surface: #{$color-bg-surface};
+  --color-bg-subtle: #{$color-bg-subtle};
+  --color-bg-elevated: #{$color-bg-elevated};
+
+  --color-border-subtle: #{$color-border-subtle};
+  --color-border: #{$color-border-default};
+  --color-border-hover: #{$color-border-hover};
+  --color-border-active: #{$color-border-active};
+
+  // Typography
+  --font-family: #{$font-family-base};
+  --font-size-xs: #{$font-size-xs};
+  --font-size-sm: #{$font-size-sm};
+  --font-size-base: #{$font-size-base};
+  --font-size-md: #{$font-size-md};
+  --font-size-lg: #{$font-size-lg};
+  --font-size-xl: #{$font-size-xl};
+  --font-size-2xl: #{$font-size-2xl};
+
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-semibold: #{$font-weight-semibold};
+  --font-weight-bold: #{$font-weight-bold};
+
+  --line-height-tight: #{$line-height-tight};
+  --line-height-normal: #{$line-height-normal};
+  --line-height-relaxed: #{$line-height-relaxed};
+
+  // Spacing
+  --spacing-xxs: #{$spacing-xxs};
+  --spacing-xs: #{$spacing-xs};
+  --spacing-sm: #{$spacing-sm};
+  --spacing-md: #{$spacing-md};
+  --spacing-lg: #{$spacing-lg};
+  --spacing-xl: #{$spacing-xl};
+  --spacing-2xl: #{$spacing-2xl};
+  --spacing-3xl: #{$spacing-3xl};
+
+  // Radii
+  --radius-xs: #{$radius-xs};
+  --radius-sm: #{$radius-sm};
+  --radius-md: #{$radius-md};
+  --radius-lg: #{$radius-lg};
+  --radius-xl: #{$radius-xl};
+  --radius-full: #{$radius-full};
+
+  // Elevation & Shadows
+  --shadow-sm: #{$shadow-sm};
+  --shadow-md: #{$shadow-md};
+  --shadow-lg: #{$shadow-lg};
+  --shadow-xl: #{$shadow-xl};
+  --shadow-glow-primary: #{$shadow-glow-primary};
+
+  // Transitions
+  --transition-fast: #{$transition-fast};
+  --transition-base: #{$transition-base};
+  --transition-slow: #{$transition-slow};
+}

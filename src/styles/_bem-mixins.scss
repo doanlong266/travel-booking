@@ -1,0 +1,58 @@
+@use "sass:color";
+@import "./tokens";
+
+/**
+ * SCSS Helper Mixins for Strict BEM Methodology
+ */
+
+// Element helper
+@mixin element($element) {
+  &__#{$element} {
+    @content;
+  }
+}
+
+// Modifier helper
+@mixin modifier($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+// Flex layout utilities using CSS variables
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+// Responsive breakpoints
+@mixin mobile {
+  @media (max-width: 640px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 1025px) {
+    @content;
+  }
+}

@@ -1,0 +1,275 @@
+@import "../../../../styles/tokens";
+
+.chat-ticket-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: var(--color-surface, #ffffff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: var(--radius-lg, 14px);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  width: 100%;
+  max-width: 324px;
+  box-sizing: border-box;
+  transition: all var(--transition-fast, 0.2s ease);
+
+  &:hover {
+    border-color: var(--color-primary, #0066cc);
+    box-shadow: 0 6px 16px rgba(0, 102, 204, 0.12);
+  }
+
+  // ------------------------------------------
+  // 1. HEADER
+  // ------------------------------------------
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--color-border, #e2e8f0);
+  }
+
+  &__carrier {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    min-width: 0;
+  }
+
+  &__icon-box {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm, 6px);
+    background-color: var(--color-bg-subtle, #f0f9ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__carrier-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  &__carrier-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-text-primary, #0f172a);
+    line-height: 1.25;
+    white-space: nowrap;
+  }
+
+  &__seat-class {
+    font-size: 10.5px;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.1;
+  }
+
+  &__header-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    flex-shrink: 0;
+  }
+
+  &__status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1.5px 6px;
+    border-radius: var(--radius-full, 9999px);
+    white-space: nowrap;
+
+    &--confirmed {
+      background-color: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+    }
+
+    &--pending {
+      background-color: #fffbeb;
+      color: #d97706;
+      border: 1px solid #fde68a;
+    }
+
+    &--expired {
+      background-color: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    &--cancelled {
+      background-color: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #cbd5e1;
+    }
+  }
+
+  &__pnr-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 1.5px 6px;
+    border-radius: var(--radius-sm, 4px);
+    background-color: var(--color-primary-light, #e0f2fe);
+    color: var(--color-primary, #0066cc);
+    font-size: 10px;
+    font-weight: 700;
+    font-family: monospace;
+    letter-spacing: 0.5px;
+  }
+
+  // ------------------------------------------
+  // 2. ROUTE: Straight row Hà Nội (HAN) ──── ✈ ────> Hồ Chí Minh (SGN)
+  // ------------------------------------------
+  &__route-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 2px 0;
+    width: 100%;
+  }
+
+  &__location {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+
+    &--origin {
+      justify-content: flex-start;
+    }
+
+    &--dest {
+      justify-content: flex-end;
+    }
+  }
+
+  &__city-name {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--color-text-primary, #0f172a);
+    white-space: nowrap;
+  }
+
+  &__city-code {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-muted, #94a3b8);
+    flex-shrink: 0;
+  }
+
+  &__connector {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex: 1;
+    min-width: 32px;
+    justify-content: center;
+    color: var(--color-primary, #0066cc);
+  }
+
+  &__connector-bar {
+    height: 1.5px;
+    background: linear-gradient(90deg, #94a3b8 0%, var(--color-primary, #0066cc) 100%);
+    flex: 1;
+    border-radius: 1px;
+  }
+
+  &__connector-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2px;
+  }
+
+  &__connector-arrow {
+    color: var(--color-primary, #0066cc);
+    flex-shrink: 0;
+  }
+
+  // ------------------------------------------
+  // 3. META ROW
+  // ------------------------------------------
+  &__meta-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    padding: 2px 0;
+  }
+
+  &__time {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--color-text-secondary, #64748b);
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  &__price {
+    font-weight: 700;
+    color: #ea580c;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  // ------------------------------------------
+  // 4. ACTION BUTTONS (Balanced 2-Button Grid, Height 30px)
+  // ------------------------------------------
+  &__actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding-top: 6px;
+    border-top: 1px solid var(--color-border-subtle, #f1f5f9);
+  }
+
+  &__btn {
+    height: 30px;
+    padding: 0 8px;
+    border-radius: var(--radius-md, 8px);
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+
+    &--view {
+      border: 1px solid var(--color-primary, #0066cc);
+      background-color: #ffffff;
+      color: var(--color-primary, #0066cc);
+
+      &:hover {
+        background-color: var(--color-primary-subtle, #f0f9ff);
+        box-shadow: 0 2px 6px rgba(0, 102, 204, 0.15);
+      }
+    }
+
+    &--refund {
+      border: 1px solid #fed7aa;
+      background-color: #fff7ed;
+      color: #ea580c;
+
+      &:hover {
+        background-color: #ffedd5;
+        border-color: #f97316;
+        color: #c2410c;
+        box-shadow: 0 2px 6px rgba(234, 88, 12, 0.15);
+      }
+    }
+  }
+}

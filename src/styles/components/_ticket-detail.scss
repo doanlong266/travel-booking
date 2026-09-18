@@ -1,0 +1,234 @@
+@import "../tokens";
+
+/**
+ * TicketDetailDrawer - Strict BEM
+ * All colors, sizes, line-heights use CSS variables
+ */
+.ticket-detail {
+  &__drawer-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+
+    strong {
+      font-size: var(--font-size-base);
+      color: var(--color-text-title);
+      display: block;
+    }
+  }
+
+  &__carrier-badge {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm);
+  }
+
+  &__sub {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__heading {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  &__timeline {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-left: var(--spacing-xs);
+  }
+
+  &__timeline-step {
+    display: flex;
+    gap: var(--spacing-md);
+    position: relative;
+    padding-bottom: var(--spacing-lg);
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 14px;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--color-border);
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    &--transit {
+      padding-bottom: var(--spacing-md);
+    }
+  }
+
+  &__step-marker {
+    width: 16px;
+    height: 16px;
+    border-radius: var(--radius-full);
+    border: 3px solid;
+    background-color: var(--color-bg-container);
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    margin-top: 2px;
+
+    &--origin {
+      border-color: var(--color-primary);
+    }
+
+    &--transit {
+      width: 12px;
+      height: 12px;
+      margin-left: 2px;
+      border-color: var(--color-warning);
+    }
+
+    &--dest {
+      border-color: var(--color-secondary);
+    }
+  }
+
+  &__step-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  &__step-time {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  &__step-place {
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-title);
+  }
+
+  &__step-terminal {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__step-address {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__step-transit-tag {
+    font-size: var(--font-size-xs);
+    color: var(--color-warning);
+    background-color: var(--color-warning-light);
+    padding: 2px var(--spacing-xs);
+    border-radius: var(--radius-xs);
+    display: inline-block;
+    width: fit-content;
+  }
+
+  &__baggage-box {
+    background-color: var(--color-bg-subtle);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+
+  &__baggage-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-primary);
+  }
+
+  &__box-icon {
+    color: var(--color-primary);
+  }
+
+  &__amenity-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  &__amenity-tag {
+    font-size: var(--font-size-xs);
+    padding: 3px var(--spacing-sm);
+    border-radius: var(--radius-sm);
+  }
+
+  &__policy-box {
+    display: flex;
+    gap: var(--spacing-sm);
+    background-color: var(--color-info-light);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+  }
+
+  &__policy-icon {
+    color: var(--color-info);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  &__policy-text {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-primary);
+    line-height: var(--line-height-normal);
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  &__footer-price {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__price-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+  }
+
+  &__price-val {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-danger);
+  }
+
+  &__book-btn {
+    height: 44px;
+    font-weight: var(--font-weight-bold);
+  }
+}

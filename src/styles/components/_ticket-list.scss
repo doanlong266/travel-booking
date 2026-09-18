@@ -1,0 +1,125 @@
+@import "../tokens";
+
+/**
+ * TicketList - Strict BEM
+ * All colors, sizes, line-heights use CSS variables
+ */
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color-bg-container);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+  }
+
+  &__count-summary {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+  }
+
+  &__count-number {
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary);
+  }
+
+  &__count-label {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__sort-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+  }
+
+  &__sort-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+  }
+
+  &__sort-icon {
+    color: var(--color-text-tertiary);
+  }
+
+  &__sort-tabs {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xxs);
+    background-color: var(--color-bg-subtle);
+    padding: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  &__sort-btn {
+    padding: var(--spacing-xxs) var(--spacing-sm);
+    border-radius: var(--radius-xs);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-text-secondary);
+    background-color: transparent;
+    transition: all var(--transition-fast);
+
+    &:hover {
+      color: var(--color-text-primary);
+    }
+
+    &--active {
+      color: var(--color-primary);
+      background-color: var(--color-bg-container);
+      box-shadow: var(--shadow-sm);
+    }
+  }
+
+  &__cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+
+  &__empty {
+    background-color: var(--color-bg-container);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  &__empty-desc {
+    strong {
+      font-size: var(--font-size-base);
+      color: var(--color-text-title);
+      font-weight: var(--font-weight-bold);
+      display: block;
+      margin-bottom: var(--spacing-xs);
+    }
+
+    p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+  }
+
+  &__reset-empty-btn {
+    margin-top: var(--spacing-md);
+  }
+}
